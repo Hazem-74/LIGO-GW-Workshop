@@ -1,16 +1,3 @@
-###**README.md**
-
-```markdown
-# Gravitational Wave Analysis: GW150914
-
-<p align="right">
-  <img src="Zewail-City.png" width="200">
-</p>
-
-This repository contains a complete Jupyter notebook-based analysis of the historic gravitational wave event **GW150914**, the first direct detection of gravitational waves by the LIGO collaboration on September 14, 2015.
-
----
-
 ## Overview
 
 This project replicates and extends standard LIGO analysis techniques to:
