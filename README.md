@@ -1,100 +1,105 @@
-## Overview
+# LIGO Gravitational Wave Analysis Project
 
-This project replicates and extends standard LIGO analysis techniques to:
-- Download and preprocess strain data from both LIGO detectors (H1 and L1)
-- Visualize the time-domain and time-frequency characteristics of the signal
-- Generate a theoretical waveform template for a binary black hole merger
-- Perform matched filtering to compute signal-to-noise ratio (SNR)
-- Validate signal consistency using chi-squared tests
-- Combine information across detectors for robust detection
+## Project Overview
+This project provides a comprehensive analysis of gravitational wave data from the LIGO (Laser Interferometer Gravitational-Wave Observatory) collaboration. The code includes detailed analysis of the historic GW150914 event - the first direct detection of gravitational waves - along with three challenge datasets for educational purposes.
 
-The analysis demonstrates the characteristic "chirp" signal of a binary black hole inspiral, merger, and ringdown — confirming Einstein's general relativity prediction a century after its proposal.
+## Project Structure
+The project consists of four main components:
 
----
+1. **GW150914 Comprehensive Analysis**: A complete analysis of the first detected gravitational wave event
+2. **Challenge #1**: Basic gravitational wave signal identification
+3. **Challenge #2 (Rookie)**: Intermediate analysis with known signal parameters
+4. **Challenge #3 (Intermediate)**: Advanced analysis using real LIGO data with simulated signals
 
+## Prerequisites and Dependencies
 
-## Requirements
+### Required Python Packages
+- NumPy (>=1.19.0)
+- SciPy (>=1.5.0)
+- Matplotlib (>=3.3.0)
+- GWpy (>=2.0.0)
+- PyCBC (>=1.18.0)
 
-Install the required Python packages:
-
+### Installation
 ```bash
-pip install numpy matplotlib scipy gwpy pycbc
+# Create and activate a virtual environment
+python -m venv ligo-env
+source ligo-env/bin/activate  # On Windows: ligo-env\Scripts\activate
+
+# Install required packages
+pip install numpy scipy matplotlib
+pip install gwpy pycbc
 ```
 
-> **Note**: `PyCBC` may require additional system dependencies (e.g., FFTW, GSL). Please refer to the [PyCBC installation guide](https://pycbc.org/pycbc/latest/html/install.html).
+## Key Features
 
-All code is compatible with **Python 3.8+**.
+### GW150914 Analysis
+- Multi-detector analysis using H1 (Hanford) and L1 (Livingston) data
+- Comprehensive signal processing including band-pass filtering (30-300 Hz)
+- Q-transform time-frequency analysis
+- Matched filtering with template waveforms
+- Signal consistency tests (chi-squared)
+- Publication-quality visualizations
+- Automated directory structure for organized outputs
 
----
+### Challenge Analyses
+1. **Challenge #1**: Basic signal identification and merger time estimation
+2. **Challenge #2**: Template waveform generation and matched filtering for known parameters
+3. **Challenge #3**: Real LIGO data analysis with advanced filtering techniques
 
-## Usage
+## Usage Instructions
 
-1. Clone or download this repository.
-2. Ensure all dependencies are installed.
-3. Open `GW150914_Analysis.ipynb` in Jupyter Lab or Jupyter Notebook.
-4. Run all cells sequentially.
+### Running the GW150914 Analysis
+```bash
+# Run the main GW150914 analysis
+python -c "exec(open('path_to_gw150914_analysis.py').read())"
+```
 
-> **Internet Access Required**: Data is fetched in real-time from the [Gravitational Wave Open Science Center (GWOSC)](https://www.gw-openscience.org).
+### Running Challenge Analyses
+Each challenge can be run independently by executing the corresponding code section in the provided files.
 
-The notebook will:
-- Automatically create the `plots/` directory
-- Download 32 seconds of strain data around GW150914
-- Generate 10+ high-quality diagnostic plots
-- Save a comprehensive text summary
 
-**Total runtime**: ~3–10 minutes (depending on internet speed and hardware).
+## Technical Details
 
----
+### Data Processing Pipeline
+1. **Data Acquisition**: Download strain data from LIGO open data servers
+2. **Preprocessing**: High-pass filtering and resampling to 2048 Hz
+3. **Noise Characterization**: Power Spectral Density (PSD) calculation
+4. **Signal Enhancement**: Band-pass filtering (30-300 Hz for GW150914)
+5. **Time-Frequency Analysis**: Q-transforms for signal visualization
+6. **Matched Filtering**: Cross-correlation with template waveforms
+7. **Statistical Validation**: Signal-to-noise ratio (SNR) and chi-squared tests
 
-## Key Results
+### Signal Parameters for GW150914
+- Primary black hole mass: 36.2 solar masses
+- Secondary black hole mass: 29.1 solar masses
+- Final black hole mass: 62.3 solar masses
+- Radiated energy: 3.0 solar masses (5.3e47 Joules)
+- Distance: 410 Mpc
+- Peak strain: approximately 1e-21
 
-| Parameter               | Value                     |
-|------------------------|---------------------------|
-| Primary BH Mass        | ~36 M☉                    |
-| Secondary BH Mass      | ~29 M☉                    |
-| Final BH Mass          | ~62 M☉                    |
-| Radiated Energy        | ~3 M☉ c² (~5 × 10⁴⁷ J)    |
-| Distance               | ~410 Mpc                  |
-| Redshift               | ~0.09                     |
-| H1 Peak SNR            | >24                       |
-| L1 Peak SNR            | >20                       |
-| Network SNR            | >32                       |
-| H1–L1 Time Delay       | ~7 ms                     |
-| Frequency Band         | 35 Hz → 250 Hz            |
-| Signal Duration        | ~0.2 seconds              |
+## Educational Value
+This code serves as an educational resource for:
+- Understanding gravitational wave data analysis techniques
+- Learning signal processing methods for noisy astrophysical data
+- Practicing matched filtering and statistical detection methods
+- Visualizing time-frequency representations of transient signals
+- Working with real scientific data from LIGO observations
 
-The analysis confirms:
-- A clear "chirp" in both detectors
-- Excellent match to numerical relativity templates
-- Reduced chi-squared ≈ 1 (validating signal consistency)
-- Arrival time difference consistent with sky localization
-
----
-
-## Example Outputs
-
-- **Q-transforms** showing time-frequency evolution  
-- **Matched filter SNR** time series with peak detection  
-- **Whitened strain data** overlaid with theoretical template  
-- **Publication-quality figure** combining all diagnostics  
-- **SNR vs χ² scatter plots** for glitch rejection  
-
-All figures are saved in `plots/` with **300 DPI resolution**.
-
----
+## Important Notes
+1. The code requires internet access to download LIGO data (for GW150914 analysis)
+2. Some challenge datasets are included locally
+3. The GW150914 analysis may take several minutes to complete due to data download and processing
+4. All generated plots are saved automatically in the organized directory structure
+5. The code includes comprehensive error handling and debugging information
 
 ## References
+1. Abbott et al. (2016) - Observation of Gravitational Waves from a Binary Black Hole Merger (GW150914)
+2. LIGO Scientific Collaboration - Open data and software resources
+3. PyCBC and GWpy documentation for gravitational wave data analysis
 
-1. Abbott et al. (2016). *Observation of Gravitational Waves from a Binary Black Hole Merger*. [Phys. Rev. Lett. 116, 061102](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102).  
-2. LIGO Open Science Center (GWOSC): https://www.gw-openscience.org  
-3. PyCBC Documentation: https://pycbc.org  
-4. GWpy Documentation: https://gwpy.github.io  
-
----
+## Disclaimer
+This code is provided for educational and research purposes. While it implements analysis techniques used by the LIGO collaboration, it represents a simplified educational version. For production-level gravitational wave analysis, refer to the official LIGO algorithms and software libraries.
 
 ## License
-
-This educational code is released under the **MIT License**.  
-Gravitational wave data is publicly available via the GWOSC under open-access terms.
-
----
+This educational code is provided under the MIT License for academic and research use.
